@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/RockPaperScissors.iml" filepath="$PROJECT_DIR$/RockPaperScissors.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/RockPaperScissors.iml" filepath="$PROJECT_DIR$/.idea/RockPaperScissors.iml" />
+      <module fileurl="file://C:\Users\Helena\StudioProjects\RockPaperScissors\RockPaperScissors.iml" filepath="C:\Users\Helena\StudioProjects\RockPaperScissors\RockPaperScissors.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
