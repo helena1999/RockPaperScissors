@@ -2,8 +2,10 @@ package com.example.opilane.rockpaperscissors;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -20,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     String humnaChoice,comuterChoice,result;
     Random r;
     int HumanScore,ComputerScore = 0;
+    MediaPlayer winPlayer, lostPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +37,14 @@ public class MainActivity extends AppCompatActivity {
         humanView = findViewById(R.id.human);
         computerView = findViewById(R.id.cpu);
         r = new Random();
+
+        if (lostPlayer == null) {
+            lostPlayer = MediaPlayer.create(MainActivity.this, R.raw.loosingsong);
+        }
+        if (winPlayer == null) {
+            winPlayer = MediaPlayer.create(MainActivity.this, R.raw.wearethechampions);
+        }
+
 
         rock.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,8 +102,22 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+    public void playSound(Boolean isWin) {
+
+        if (isWin) {
+            winPlayer.start();
+        }
+        else
+        {
+            lostPlayer.start();
+        }
+    }
+
     public void calculate (){
         int computer = r.nextInt(3);
+
+
         if (computer == 0){
             comuterChoice = "rock";
             computerView.setImageResource(R.drawable.rock);
@@ -109,32 +134,38 @@ public class MainActivity extends AppCompatActivity {
         if (humnaChoice.equals("rock") && comuterChoice.equals("paper")){
             result = "You lose!";
             HumanScore++;
-
+            playSound(false);
         }
         else if (humnaChoice.equals("rock") && comuterChoice.equals("scissors")){
             result = "You win!";
             HumanScore++;
+            playSound(true);
         }
         else if (humnaChoice.equals("paper") && comuterChoice.equals("scissors")){
             result = "You lose!";
             HumanScore++;
+            playSound(false);
         }
         else if (humnaChoice.equals("paper") && comuterChoice.equals("rock")){
             result = "You win!";
             HumanScore++;
+            playSound(true);
         }
         else if (humnaChoice.equals("scissors") && comuterChoice.equals("rock")){
             result = "You lose!";
             HumanScore++;
+            playSound(false);
         }
 
         else if (humnaChoice.equals("scissors") && comuterChoice.equals("paper")){
             result = "You win!";
             HumanScore++;
+            playSound(true);
         }
         else if (humnaChoice.equals("rock") && comuterChoice.equals("rock")){
             result = "It`s a tie!";
             HumanScore++;
+
         }
         else if (humnaChoice.equals("paper") && comuterChoice.equals("paper")){
             result = "It`s a tie!";
